@@ -1,0 +1,9 @@
+{
+	"name": "com.node.script_caller",
+	"description": "Customizable menu to run user scripts at browser and/or local PC.",
+	"path": "host.bat",
+	"type": "stdio",
+	"allowed_origins": [
+		"chrome-extension://hbjpgkbbjdlemfojehgoenblpfhefcgk/"
+	]
+}

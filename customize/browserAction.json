@@ -1,0 +1,17 @@
+
+{
+    "title": "Script Caller - sample",
+    "icon": "icons/icon-16.png",
+    "menu": [
+        {
+            "id": "title",
+            "title": "Show Title in Command Prompt",
+            "matches": ["http://", "https://"]
+        }, 
+        {
+            "id": "google",
+            "title": "Google",
+            "matches": ["https://www.google.com"]
+        }
+    ]
+}
