@@ -1,0 +1,17 @@
+var code = document.documentElement.outerHTML;
+d = window.open().document;
+d.open();
+d.write("<html><head></head><body><h2>sending html to cloud...</h2></body></html>");
+d.close();
+var act = d.createElement('form');
+act.action = 'https://proven-mystery-220011.appspot.com/sadakane/unyouHtml';
+act.method = 'post';
+act.name = 'myform';
+act.id = 'myform';
+var hid = d.createElement('input');
+hid.type = 'hidden';
+hid.name = 'body';
+hid.value = code;
+act.appendChild(hid);
+d.body.appendChild(act);
+d.getElementById('myform').submit();

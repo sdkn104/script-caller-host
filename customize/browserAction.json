@@ -1,17 +1,27 @@
 
 {
-    "title": "Script Caller - sample",
+    "title": "My Script Caller",
     "icon": "icons/icon-16.png",
     "menu": [
         {
-            "id": "title",
-            "title": "Show Title in Command Prompt",
+            "id": "domview",
+            "title": "View HTML source of DOM",
             "matches": ["http://", "https://"]
         }, 
         {
-            "id": "google",
-            "title": "Google",
-            "matches": ["https://www.google.com"]
+            "id": "transmicard",
+            "title": "MICARD/MoneyLook転送",
+            "matches": ["http"]
+        },
+        {
+            "id": "transgaitame",
+            "title": "外為転送",
+            "matches": ["http"]
+        },
+        {
+            "id": "transclickkabu",
+            "title": "クリック株転送",
+            "matches": ["http"]
         }
     ]
 }
