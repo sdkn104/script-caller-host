@@ -4,24 +4,24 @@
     "icon": "icons/icon-16.png",
     "menu": [
         {
-            "id": "domview",
             "title": "View HTML source of DOM",
-            "matches": ["http://", "https://"]
+            "matches": ["http://", "https://"],
+            "injectionScript": "injectionCode_domView.js"
         }, 
         {
-            "id": "transmicard",
             "title": "MICARD/MoneyLook転送",
-            "matches": ["http"]
+            "matches": ["http"],
+            "injectionScript": "injectionCode_transMICARD.js"
         },
         {
-            "id": "transgaitame",
             "title": "外為転送",
-            "matches": ["http"]
+            "matches": ["http"],
+            "injectionScript": "injectionCode_transGAITAME.js"
         },
         {
-            "id": "transclickkabu",
             "title": "クリック株転送",
-            "matches": ["http"]
+            "matches": ["http"],
+            "injectionScript": "injectionCode_transClickKabu.js"
         }
     ]
 }

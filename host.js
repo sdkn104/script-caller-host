@@ -69,21 +69,21 @@ function handleMessage(msg) {
       if( ! ("menu" in browserAction) ) {
         throw new Error("menu key not found in browserAction.json")
       }
-      response.injectionCode = {}
-      browserAction.menu.forEach(function(elem){
-        let id = elem.id
-        let filename = "./customize/injectionCode_"+id+".js"
-        if( fs.existsSync(filename)){
+      response.injectionCode = []
+      browserAction.menu.forEach(function(elem, idx){
+        let file = elem.injectionScript
+        let filename = "./customize/"+file
+        if( file && fs.existsSync(filename)){
           let text = fs.readFileSync(filename, {encoding:"utf-8"})
-          response.injectionCode[id] = text
+          response.injectionCode[idx] = text
         }
       })
       // send response
       sendMessage(response);
     } else if(msg.cmd === "click") { // menu item clicked
       // load native code
-      let id = msg.id;
-      let filename = "./customize/nativeCode_"+id+".js"
+      let file = browserAction.menu[msg.idx];
+      let filename = "./customize/"+file
       let r = null
       // execute native code
       if( fs.existsSync(filename)){
