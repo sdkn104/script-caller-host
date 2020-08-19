@@ -22,6 +22,12 @@
             "title": "クリック株転送",
             "matches": ["http"],
             "injectionScript": "injectionCode_transClickKabu.js"
+        },
+        {
+            "title": "Show Title in Command Prompt",
+            "matches": ["http"],
+            "injectionScript": "injectionCode_title.js",
+            "nativeScript": "nativeCode_title.js"
         }
     ]
 }

@@ -51,10 +51,10 @@ process.on('uncaughtException', (err) => {
 // message handling
 function handleMessage(msg) {
   try {
+    // load JSON file
+    let browserAction = require("./customize/browserAction.json")
     if( msg.cmd === "get-options") { // config data requested
       let response = {}
-      // load JSON file
-      let browserAction = require("./customize/browserAction.json")
       // replace icon image file name with icon data URL
       if( browserAction.icon ) {
         var mime = 'image/png'; 
@@ -82,14 +82,14 @@ function handleMessage(msg) {
       sendMessage(response);
     } else if(msg.cmd === "click") { // menu item clicked
       // load native code
-      let file = browserAction.menu[msg.idx];
+      let file = browserAction.menu[msg.idx].nativeScript;
       let filename = "./customize/"+file
       let r = null
       // execute native code
       if( fs.existsSync(filename)){
         r = require(filename).main(msg.injectionCodeResults);
       }
-      sendMessage({response: r})
+      sendMessage({response: r, script:filename, exixtScript:fs.existsSync(filename)})
     } else {
     }
   } catch(err) {
