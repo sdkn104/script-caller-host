@@ -48,7 +48,7 @@ process.on('uncaughtException', (err) => {
 })
 
 
-// message handling
+// handling message msg from browser extension
 function handleMessage(msg) {
   try {
     // load JSON file
@@ -73,11 +73,17 @@ function handleMessage(msg) {
       browserAction.menu.forEach(function(elem, idx){
         let file = elem.injectionScript
         let filename = "./customize/"+file
-        if( file && fs.existsSync(filename)){
-          let text = fs.readFileSync(filename, {encoding:"utf-8"})
-          response.injectionCode[idx] = text
+        if( file ) {
+          if( fs.existsSync(filename) ){
+            let text = fs.readFileSync(filename, {encoding:"utf-8"})
+            response.injectionCode[idx] = text
+          } else {
+            throw new Error(`file ${file} in browserAction.json is not found in native client host folder.`)
+          }
         }
       })
+      // set CWD
+      response.cwd = __dirname;//process.cwd;
       // send response
       sendMessage(response);
     } else if(msg.cmd === "click") { // menu item clicked
@@ -88,6 +94,8 @@ function handleMessage(msg) {
       // execute native code
       if( fs.existsSync(filename)){
         r = require(filename).main(msg.injectionCodeResults);
+      } else {
+        sendMessage({error:"Native Code File Not Found", message:filename, stack:""})
       }
       sendMessage({response: r, script:filename, exixtScript:fs.existsSync(filename)})
     } else {
